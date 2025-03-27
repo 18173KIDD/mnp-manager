@@ -1,0 +1,38 @@
+/* 関係コンテナ */
+.relation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* その他の場合の入力欄 */
+.other-relation {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 2px;
+    display: none;
+}
+
+/* carrier-selectのスタイル調整 */
+.carrier-select optgroup {
+    font-weight: bold;
+    color: #333;
+}
+
+.carrier-select option {
+    padding: 5px;
+}
+
+/* モバイル表示の最適化 */
+@media (max-width: 768px) {
+    .relation-container {
+        width: 100%;
+    }
+    
+    .other-relation {
+        max-width: 100%;
+    }
+}

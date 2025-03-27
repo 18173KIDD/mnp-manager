@@ -1,0 +1,806 @@
+/* 全体のスタイル */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* フォーム要素のスタイル */
+.header-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    flex: 1 0 200px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* timeタイプの入力フィールドの調整 */
+input[type="time"] {
+    box-sizing: border-box;
+    line-height: normal;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* テーブルスタイル */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    white-space: nowrap; /* テキストを折り返さない */
+}
+
+thead {
+    background-color: #3498db;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #e6f7ff;
+}
+
+/* キャリアと関係選択肢のスタイル調整 */
+.carrier-select, .relation, .custom-relation {
+    min-width: 120px; /* 最小幅を設定 */
+    width: 100%; /* 幅を100%に */
+    padding: 8px 10px; /* パディング調整 */
+    white-space: nowrap; /* テキストを折り返さない */
+    overflow: visible; /* オーバーフローを表示 */
+    font-size: 14px; /* フォントサイズ調整 */
+    border: 1px solid #ddd; /* 他の入力欄と合わせる */
+    border-radius: 4px; /* 角丸 */
+    background-color: #fff; /* 背景色 */
+    height: 38px; /* 他の入力欄と高さを合わせる */
+}
+
+/* 関係コンテナスタイル */
+.relation-container {
+    width: 100%;
+    position: relative;
+}
+
+/* ボタンスタイル */
+.button-group {
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 120px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-warning {
+    background-color: #f39c12;
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #e67e22;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-info {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-info:hover {
+    background-color: #2980b9;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* アクションセクション */
+.actions {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* プレビューセクション */
+.preview-section {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#preview-container {
+    overflow-x: auto;
+}
+
+/* グループ管理セクション */
+.groups {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.groups h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.groups h3 {
+    color: #3498db;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #3498db;
+    padding-bottom: 5px;
+}
+
+/* トグルヘッダースタイル */
+.group-toggle-header {
+    background-color: #f2f2f2;
+    border: 1px solid #3498db;
+    color: #333;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.group-toggle-header:hover {
+    background-color: #e0f4ff;
+}
+
+.toggle-header {
+    margin: 0;
+    color: #2980b9;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* グループ選択パネル */
+.saved-groups-panel {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* グループ保存セクション */
+.group-save-container {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.group-name-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.group-name-container.compact {
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+}
+
+.group-name-container label {
+    font-weight: bold;
+    white-space: nowrap;
+    margin-bottom: 0;
+}
+
+.group-name-input {
+    flex-grow: 1;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-width: 0; /* 限界を超えたときに可能な限り小さくする */
+}
+
+/* 旧スタイル削除 */
+/* .btn-lg {
+    padding: 12px 20px;
+    font-size: 18px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+} */
+
+/* グループ選択・管理部分 */
+.group-management {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.group-selection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#group-list {
+    min-width: 200px;
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* グループコンテナ */
+.groups-container {
+    margin-top: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* グループアイテム */
+.group-item {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.group-item:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.group-header {
+    padding: 12px 15px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.group-header:hover {
+    background-color: #2980b9;
+}
+
+.group-header::after {
+    content: '\25BC';
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.group-header.active::after {
+    transform: rotate(180deg);
+}
+
+.group-info {
+    flex-grow: 1;
+    margin-right: 40px; /* 矢印のスペースを確保 */
+}
+
+.group-title {
+    font-weight: bold;
+    margin: 0;
+    font-size: 16px;
+    display: block;
+}
+
+.group-date {
+    font-size: 0.85em;
+    opacity: 0.9;
+    display: block;
+    margin-top: 3px;
+}
+
+.group-actions {
+    display: flex;
+    gap: 8px;
+    z-index: 1; /* ボタンを前面に */
+}
+
+.group-actions .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.group-content {
+    padding: 0;
+    background-color: #fff;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.group-content.active {
+    max-height: 2000px;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+/* 編集モードのスタイル強化 */
+.edit-mode {
+    border: 2px solid #27ae60;
+    box-shadow: 0 0 10px rgba(39, 174, 96, 0.3);
+}
+
+.edit-mode .group-header {
+    background-color: #27ae60;
+}
+
+/* 編集可能な内容スタイル */
+.editable-field {
+    border: 1px dashed transparent;
+    padding: 2px 5px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.edit-mode .editable-field:hover {
+    border-color: #27ae60;
+    background-color: #f0fff4;
+    cursor: pointer;
+}
+
+.group-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+.group-detail-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+    padding: 6px 8px;
+}
+
+.edit-mode {
+    border: 2px solid #27ae60;
+    box-shadow: 0 0 10px rgba(39, 174, 96, 0.3);
+}
+
+.edit-mode .group-header {
+    background-color: #27ae60;
+}
+
+.edit-mode .edit-btn {
+    display: none;
+}
+
+.edit-mode .save-edit-btn {
+    display: inline-block;
+}
+
+.save-edit-btn {
+    display: none;
+}
+
+/* 名義情報管理ボタンとモーダル */
+.names-management-toggle {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* モーダルスタイル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    padding: 15px 20px;
+    background-color: #3498db;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: white;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f1f1f1;
+}
+
+.names-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.names-editor .form-group {
+    width: 100%;
+}
+
+.names-editor .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#name-list {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* 削除ボタン */
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* 追加記述 */
+.form-hint {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 3px;
+}
+
+.carrier-select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+/* 出力コントロール */
+.output-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* 管理機能ボタン用スタイル - 画面の端に配置 */
+.admin-controls-corner {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.7em;
+    opacity: 0.5;
+    z-index: 100;
+}
+
+.admin-controls-corner:hover {
+    opacity: 0.9;
+}
+
+.admin-controls-corner .btn-link {
+    color: #999;
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    background-color: transparent;
+    border: none;
+}
+
+.admin-controls-corner .btn-link:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+#group-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #3498db;
+    border-radius: 6px;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    background-color: #f8f8f8;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#group-select:focus {
+    outline: none;
+    border-color: #2980b9;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+#group-select:hover {
+    background-color: #e8f4f8;
+}
+
+.output-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.output-buttons .btn {
+    min-width: 120px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.output-buttons .btn-primary {
+    background-color: #3498db;
+    border: none;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+}
+
+.output-buttons .btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
+}
+
+.output-buttons .btn-success {
+    background-color: #2ecc71;
+    border: none;
+    box-shadow: 0 2px 5px rgba(46, 204, 113, 0.3);
+}
+
+.output-buttons .btn-success:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.4);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .header-info {
+        flex-direction: column;
+    }
+    
+    .form-group {
+        flex: 1 0 100%;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .names-editor {
+        flex-direction: column;
+    }
+    
+    .names-editor .button-group {
+        flex-direction: column;
+    }
+}
+
+/* 印刷時のスタイル */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .preview-section, .preview-section * {
+        visibility: visible;
+    }
+    
+    .preview-section {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    
+    .container {
+        box-shadow: none;
+    }
+}

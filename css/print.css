@@ -1,0 +1,155 @@
+/* 印刷用スタイル */
+@media print {
+    /* 横向き印刷の指定 */
+    @page {
+        size: landscape;
+        margin: 5mm;
+        /* 空白ページの出力抑制 */
+        orphans: 0;
+        widows: 0;
+    }
+    /* 通常のページ要素はすべて非表示に */
+    body * {
+        visibility: hidden;
+    }
+    
+    /* プレビュー部分のみ表示 */
+    .preview-section, 
+    .preview-section * {
+        visibility: visible;
+    }
+    
+    /* プレビューを画面全体に配置 */
+    .preview-section {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    /* コンテナのスタイルを印刷向けに調整 */
+    .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        background: white;
+    }
+    
+    /* プレビューテーブルのスタイル調整 */
+    #preview-table {
+        width: 100%;
+        page-break-inside: avoid;
+        border-collapse: collapse;
+    }
+    
+    #preview-table th,
+    #preview-table td {
+        padding: 5mm;
+        border: 0.5pt solid #000;
+        font-size: 10pt;
+        text-align: left;
+    }
+    
+    #preview-table th {
+        background-color: #e8e8e8 !important; /* より明るい背景色 */
+        -webkit-print-color-adjust: exact; 
+        color-adjust: exact;
+        print-color-adjust: exact; /* 最新ブラウザ向け */
+        color: #000 !important; /* 文字色を黒に固定 */
+    }
+    
+    /* 行の背景色を明るく */
+    #preview-table tr:nth-child(even) {
+        background-color: #f8f8f8 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    /* ヘッダー行を各ページの先頭に表示 */
+    #preview-table thead {
+        display: table-header-group;
+    }
+    
+    /* 改ページ設定 - 強化 */
+    #preview-table,
+    #preview-table thead,
+    #preview-table tbody,
+    #preview-table tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+    
+    /* 余分なページ出力の抑制 */
+    .preview-section::after {
+        content: "";
+        display: none !important;
+    }
+    
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* 印刷時に改ページを無効化 */
+    .preview-section {
+        overflow: visible !important;
+        height: auto !important;
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+    }
+    
+    /* 改ページを防止する追加設定 */
+    html, body {
+        width: 100%;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible;
+    }
+    
+    /* 空白ページ対策の追加 */
+    @page :blank {
+        display: none;
+        margin: 0;
+    }
+    
+    html {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    /* テーブル幅を最適化 */
+    #preview-table {
+        max-width: 100%;
+        width: 100% !important;
+        table-layout: fixed;
+        font-size: 9pt; /* フォントサイズをやや大きく */
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* セル幅の調整 - 文字切れを防止 */
+    #preview-table th,
+    #preview-table td {
+        padding: 2mm;
+        overflow: visible !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        text-overflow: clip !important;
+        max-width: none !important;
+    }
+    
+    /* 各列の幅をバランス良く設定 - 幅を最大化 */
+    #preview-table th:nth-child(1) { width: 15%; } /* 電話番号 */
+    #preview-table th:nth-child(2) { width: 17%; } /* MNP予約番号 */
+    #preview-table th:nth-child(3) { width: 12%; } /* 移転元キャリア */
+    #preview-table th:nth-child(4) { width: 15%; } /* 乗り換え元名義 */
+    #preview-table th:nth-child(5) { width: 15%; } /* 乗り換え先名義 */
+    #preview-table th:nth-child(6) { width: 12%; } /* 利用者 */
+    #preview-table th:nth-child(7) { width: 14%; } /* 関係 */
+}

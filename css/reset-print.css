@@ -1,0 +1,95 @@
+/* 印刷リセット用スタイルシート */
+@media print {
+    /* ページ設定 */
+    @page {
+        size: landscape;
+        margin: 10mm;
+        orphans: 0;
+        widows: 0;
+    }
+    
+    /* 空白ページの出力抑制 */
+    @page:blank {
+        display: none;
+        margin: 0;
+        border: none;
+        padding: 0;
+    }
+    
+    /* HTML/Body リセット */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        width: auto !important;
+        overflow: hidden !important;
+        max-height: 297mm !important; /* A4横の高さ */
+    }
+    
+    /* 余白の調整 */
+    * {
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* 通常のコンテンツは非表示 */
+    body * {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
+    /* 印刷専用コンテンツの表示 */
+    .print-only {
+        display: block !important;
+        visibility: visible !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    .print-only * {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* テーブル印刷の最適化 */
+    #print-only-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed !important;
+        border-collapse: collapse !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+    
+    #print-only-table th,
+    #print-only-table td {
+        border: 1px solid black !important;
+        padding: 2mm !important;
+        overflow: visible !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+    }
+    
+    /* 改ページの防止 */
+    #printable-area {
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-before: avoid !important;
+        break-after: avoid !important;
+        break-inside: avoid !important;
+    }
+    
+    /* 余分なページの生成を防止 */
+    body::after,
+    html::after {
+        content: none !important;
+        display: none !important;
+    }
+}

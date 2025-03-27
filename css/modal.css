@@ -1,0 +1,138 @@
+/* モーダルスタイル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease-out;
+    transform-origin: top center;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    padding: 18px 20px;
+    background-color: #3498db;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: white;
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 20px;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-body p {
+    margin-top: 0;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.modal-body .form-group {
+    margin-bottom: 25px;
+}
+
+.modal-body label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.modal-body input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-body input[type="text"]:focus {
+    border-color: #3498db;
+    box-shadow: inset 0 1px 3px rgba(52, 152, 219, 0.2), 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #f1f1f1;
+}
+
+.modal-body .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.modal-body .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+/* モバイル用調整 */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-body .button-group {
+        flex-direction: column;
+    }
+    
+    .modal-body .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

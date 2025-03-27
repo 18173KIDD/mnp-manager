@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNP契約情報管理表</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/relation.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/print.css">
+    <link rel="stylesheet" href="css/reset-print.css">
+    <link rel="stylesheet" href="css/preview.css">
+    <link rel="stylesheet" href="css/group-detail.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MNP契約情報管理表</h1>
+        
+        <!-- ヘッダー情報入力部分 -->
+        <section class="header-info">
+            <!-- 日付欄は不要のため非表示に -->
+            <div class="form-group" style="display: none;">
+                <label for="current-date">日付:</label>
+                <input type="date" id="current-date" name="current-date">
+            </div>
+            
+            <div class="form-group">
+                <label for="customer-name">名前:</label>
+                <input type="text" id="customer-name" name="customer-name" list="customer-list">
+                <datalist id="customer-list">
+                    <!-- 過去の顧客名が自動的に追加される -->
+                </datalist>
+            </div>
+            
+            <div class="form-group">
+                <label for="customer-age">年齢:</label>
+                <input type="number" id="customer-age" name="customer-age" min="0" max="120">
+            </div>
+            
+            <div class="form-group">
+                <label for="reservation-date">予約希望日:</label>
+                <input type="date" id="reservation-date" name="reservation-date">
+            </div>
+            
+            <div class="form-group">
+                <label for="reservation-time">予約希望時間:</label>
+                <input type="time" id="reservation-time" name="reservation-time">
+            </div>
+        </section>
+        
+        <!-- 回線情報テーブル -->
+        <section class="line-info">
+            <h2>回線情報</h2>
+            
+            <div class="table-responsive">
+                <table id="line-table">
+                    <thead>
+                        <tr>
+                            <th>操作</th>
+                            <th>電話番号</th>
+                            <th>MNP予約番号</th>
+                            <th>移転元キャリア</th>
+                            <th>乗り換え元名義</th>
+                            <th>乗り換え先名義</th>
+                            <th>利用者</th>
+                            <th>関係</th>
+                        </tr>
+                    </thead>
+                    <tbody id="line-table-body">
+                        <!-- ここに行が動的に追加される -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="button-group">
+                <button id="add-line" class="btn btn-primary">回線を追加</button>
+                <button id="clear-lines" class="btn btn-warning">回線情報をクリア</button>
+                <button id="save-group" class="btn btn-success">グループとして保存</button>
+            </div>
+            
+            <!-- グループ名はモーダルウィンドウで入力するため、ここから削除 -->
+        </section>
+        
+        <!-- 操作ボタン -->
+        <section class="actions">
+            <div class="output-controls">
+                <select id="group-select" class="form-control">
+                    <option value="" disabled selected>グループを選択してください</option>
+                </select>
+                <div class="output-buttons">
+                    <button id="export-pdf" class="btn btn-primary">PDF出力</button>
+                    <button id="export-csv" class="btn btn-success">CSV出力</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 管理機能ボタン（画面端に配置） -->
+        <div class="admin-controls-corner">
+            <button id="download-error-logs" class="btn btn-sm btn-link">エラー情報</button>
+        </div>
+
+        <!-- 印刷用のプレビュー部分 -->
+        <section class="preview-section" style="display: none;">
+            <h3>プレビュー表示</h3>
+            <div class="preview-scroll">
+                <div id="preview-container" class="preview-container">
+                    <table id="preview-table">
+                        <thead>
+                            <tr id="preview-header">
+                                <!-- ヘッダー情報が動的に挿入される -->
+                            </tr>
+                            <tr>
+                                <th colspan="7">乗り換え</th>
+                            </tr>
+                            <tr>
+                                <th>電話番号</th>
+                                <th>MNP予約番号</th>
+                                <th>移転元キャリア</th>
+                                <th>乗り換え元名義</th>
+                                <th>乗り換え先名義</th>
+                                <th>利用者</th>
+                                <th>関係</th>
+                            </tr>
+                        </thead>
+                        <tbody id="preview-body">
+                            <!-- プレビューデータが動的に挿入される -->
+                        </tbody>
+                    </table>
+                    <div class="preview-info">↓ スクロールして全内容を確認できます</div>
+                </div>
+            </div>
+            <div class="preview-controls">
+                <button id="generate-pdf" class="btn btn-primary">PDFとして出力</button>
+                <button id="hide-preview" class="btn btn-secondary">プレビューを閉じる</button>
+            </div>
+        </section>
+
+        <!-- グループ管理 -->
+        <section class="groups">
+            <h2>グループ管理</h2>
+            
+            <!-- グループ選択ヘッダー(トグル式) -->
+            <div class="group-toggle-header">
+                <h3 id="saved-groups-toggle" class="toggle-header">保存済みグループを表示 ▼</h3>
+            </div>
+            
+            <!-- グループ選択パネル (初期は非表示) -->
+            <div id="saved-groups-panel" class="saved-groups-panel" style="display: none;">
+                <!-- グループ一覧を表示 -->
+                <div id="groups-container" class="groups-container">
+                    <!-- グループがここに動的に追加される -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- 名義入力用データリスト -->
+        <datalist id="source-names-list"></datalist>
+        <datalist id="dest-names-list"></datalist>
+        <datalist id="users-list"></datalist>
+    </div>
+    
+    <!-- グループ名入力用モーダル -->
+    <div id="save-group-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>グループを保存</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>このグループに名前を付けて保存します。</p>
+                <div class="form-group">
+                    <label for="modal-group-name">グループ名：</label>
+                    <input type="text" id="modal-group-name" class="form-control" placeholder="わかりやすいグループ名を入力してください">
+                </div>
+                <div class="button-group">
+                    <button id="confirm-save-group" class="btn btn-success">保存する</button>
+                    <button id="cancel-save-group" class="btn btn-secondary">キャンセル</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外部ライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/polyfills.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/encoding-japanese@2.0.0/encoding.min.js"></script>
+    
+    <!-- 印刷専用スタイル -->
+    <style id="fix-print-style">
+        @media print {
+            @page { size: landscape !important; margin: 10mm !important; }
+            @page :first { margin: 10mm !important; }
+            @page :left { margin: 0 !important; }
+            @page :right { margin: 0 !important; }
+            html, body { height: 297mm !important; max-height: 297mm !important; }
+            body * { display: none !important; }
+            body { height: auto !important; overflow: visible !important; }
+            .print-only { display: block !important; position: absolute !important; }
+            .print-only * { display: block !important; visibility: visible !important; }
+            #printable-area { position: absolute; top: 0; left: 0; width: 100%; }
+            @page :blank { display: none !important; }
+        }
+    </style>
+    
+    <!-- 非表示の印刷専用エリア -->
+    <div id="printable-area" class="print-only" style="display: none; overflow: hidden; max-height: 280mm;">
+        <div id="print-container"></div>
+    </div>
+
+    <!-- アプリケーションスクリプト -->
+    <script src="js/storage.js"></script>
+    <script src="js/pdf-helper-japanese-fixed.js"></script>
+    <script src="js/app_updated_new_fixed.js"></script>
+</body>
+</html>

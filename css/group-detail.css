@@ -1,0 +1,49 @@
+/* グループ詳細テーブルのためのスタイル */
+.group-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+    table-layout: fixed; /* 列幅固定 */
+}
+
+.group-detail-table th,
+.group-detail-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: middle;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.group-detail-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 列の幅を調整 */
+.group-detail-table th:nth-child(1),
+.group-detail-table td:nth-child(1) {
+    width: 16%;
+}
+
+.group-detail-table th:nth-child(2),
+.group-detail-table td:nth-child(2) {
+    width: 16%;
+}
+
+/* 列の表示を確保するための最小幅設定 */
+.group-detail-table th,
+.group-detail-table td {
+    min-width: 80px;
+}
+
+/* 交互の行の色 */
+.group-detail-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* ホバー効果 */
+.group-detail-table tr:hover {
+    background-color: #e6f7ff;
+}
