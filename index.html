@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/reset-print.css">
     <link rel="stylesheet" href="css/preview.css">
     <link rel="stylesheet" href="css/group-detail.css">
+    <link rel="stylesheet" href="css/search-filter.css">
 </head>
 <body>
     <div class="container">
@@ -45,6 +46,61 @@
             <div class="form-group">
                 <label for="reservation-time">予約希望時間:</label>
                 <input type="time" id="reservation-time" name="reservation-time">
+            </div>
+        </section>
+        
+        <!-- 検索・フィルターセクション -->
+        <section class="search-filter-section">
+            <h2>🔍 検索・フィルター</h2>
+            
+            <div class="search-controls">
+                <!-- メイン検索ボックス -->
+                <div class="search-box">
+                    <input type="text" id="main-search" placeholder="名前、電話番号、MNP予約番号で検索..." autocomplete="off">
+                    <button id="clear-search" class="btn btn-secondary">クリア</button>
+                </div>
+                
+                <!-- フィルターボタン（トグル式） -->
+                <div class="filter-toggle">
+                    <button id="show-filters" class="btn btn-secondary">詳細フィルター ▼</button>
+                </div>
+                
+                <!-- 詳細フィルター（初期は非表示） -->
+                <div id="advanced-filters" class="advanced-filters" style="display: none;">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label for="carrier-filter">キャリア:</label>
+                            <select id="carrier-filter" class="form-control">
+                                <option value="">全てのキャリア</option>
+                                <option value="docomo">ドコモ</option>
+                                <option value="au">au</option>
+                                <option value="softbank">ソフトバンク</option>
+                                <option value="rakuten">楽天モバイル</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="date-from">予約日（開始）:</label>
+                            <input type="date" id="date-from" class="form-control">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="date-to">予約日（終了）:</label>
+                            <input type="date" id="date-to" class="form-control">
+                        </div>
+                        
+                        <div class="filter-buttons">
+                            <button id="apply-filters" class="btn btn-primary">適用</button>
+                            <button id="reset-filters" class="btn btn-secondary">リセット</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 検索結果表示 -->
+                <div id="search-results-info" class="search-results-info">
+                    <!-- "X件中Y件を表示"などの情報 -->
+                </div>
             </div>
         </section>
         
@@ -212,5 +268,6 @@
     <script src="js/storage.js"></script>
     <script src="js/pdf-helper-japanese-fixed.js"></script>
     <script src="js/app_updated_new_fixed.js"></script>
+    <script src="js/search-filter.js"></script>
 </body>
 </html>
